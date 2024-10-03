@@ -31,10 +31,15 @@
         @error("password")
             <span class="text-red-500 text-xs">{{$message}}</span>
         @enderror
-        
+
         <br>
 
-        <button class="block rounded px-3 py-1 bg-gray-400 text-white">Create</button>
+        <div wire:loading.delay.longer>
+            <span class="text-green-500"> Sending ...</span>
+        </div>
+
+        <button wire:loading.va
+         class="block rounded px-3 py-1 bg-gray-400 text-white">Create</button>
     </form>
 
     <hr>

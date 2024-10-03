@@ -12,5 +12,7 @@
 
         @livewire('clicker')
 
+        {{-- @livewire('Parameters') --}}
+
     </body>
 </html>
