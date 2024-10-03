@@ -10,9 +10,9 @@
     </head>
     <body>
 
-        @livewire('clicker')
+        {{-- @livewire('clicker') --}}
 
-        {{-- @livewire('Parameters') --}}
+        @livewire('Parameters')
 
     </body>
 </html>

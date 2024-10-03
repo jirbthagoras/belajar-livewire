@@ -33,15 +33,23 @@ class Clicker extends Component
             "password" => $this->password,
         ]);
 
-        $this->reset("name", "email", "password");
+
 
         request()->session()->flash("success", "Your Account Successfully Created");
+
+        $user = User::query()
+        ->where("name", "=", $this->name)
+        ->first();
+
+        $this->reset("name", "email", "password");
+
+        $this->dispatch("user-created", $user);
     }
 
     public function render()
     {
 
-        $users = User::query()->paginate(5);
+        $users = User::query()->latest()->paginate(5);
 
         return view('livewire.clicker', [
             "users" => $users

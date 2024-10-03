@@ -1,5 +1,18 @@
-<div>
-    <input type="text" wire:model.live.debounce.500ms='name'>
+<div wire:poll>
+    <table class="border border-b-gray-950">
 
-    <h1>{{$name}}</h1>
+        <tr>
+            <th>name</th>
+        </tr>
+        @foreach ($users as $user)
+        <tr>
+
+                <td>{{$user->name}}</td>
+
+        </tr>
+        @endforeach
+
+    </table>
+
+    {{$users->links()}}
 </div>

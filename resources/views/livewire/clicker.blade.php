@@ -38,18 +38,12 @@
             <span class="text-green-500"> Sending ...</span>
         </div>
 
-        <button wire:loading.va
+        <button
          class="block rounded px-3 py-1 bg-gray-400 text-white">Create</button>
     </form>
 
     <hr>
 
-    @foreach ($users as $user)
-        <h3>{{$user->name}}</h3>
-    @endforeach
-
     <br>
-
-    {{$users->links()}}
 
 </div>
