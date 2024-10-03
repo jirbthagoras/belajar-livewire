@@ -6,31 +6,45 @@ use App\Models\User;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 use Livewire\Features\SupportPageComponents\BaseTitle;
+use Livewire\WithPagination;
 
 class Clicker extends Component
 {
+    use WithPagination;
 
     public string $name;
+
     public string $email;
+
     public string $password;
 
     public function createNewUser()
     {
+        $this->validate([
+            "name" => ["required", "min:2", "max:50"],
+            "email" => ["required", "email", "unique:users"],
+            "password" => ["required", "min:5"],
+        ]);
+
         User::query()
         ->create([
-            "name" => "Bal Iqbal ajarin dong bal",
-            "email" => "iqbal@gmail.com",
-            "password" => "rahasia",
+            "name" => $this->name,
+            "email" => $this->email,
+            "password" => $this->password,
         ]);
+
+        $this->reset("name", "email", "password");
+
+        request()->session()->flash("success", "Your Account Successfully Created");
     }
 
     public function render()
     {
 
-        $users = User::all();
+        $users = User::query()->paginate(5);
 
         return view('livewire.clicker', [
-        
+            "users" => $users
         ]);
     }
 }
